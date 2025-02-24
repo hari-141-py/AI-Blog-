@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111">
+    <title>AI Blog Generator</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bowlby+One&family=Chewy&family=Danfo&family=DotGothic16&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Gaegu&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Knewave&family=Lexend+Tera:wght@100..900&family=Lexend:wght@100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Megrim&family=Modak&family=Montserrat+Alternates&family=Nokora:wght@100;300;400;700;900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Pangolin&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&family=Rubik:ital,wght@0,300..900;1,300..900&family=Space+Grotesk:wght@300..700&family=Tektur:wght@400..900&family=Tiny5&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col min-h-screen font-sans antialised">
+
+
+     <nav class="navv p-4 text-white flex justify-between">
+        <div class="navi">
+            <div class="flex flex-row">
+                <i id="logo" class="fa-solid fa-cube"></i>
+                <h1 class="text-3xl font-bold"><span>AI OWL</span> <br>Blog-Generator</h1>
+            </div>
+        </div>
+        <div class="menu">
+            <i class="fa-solid fa-bars hover:cursor-pointer" style="color: #ffffff;"></i>
+        </div>
+        <div id="full">
+            <a href="{% url 'blog_generator:index' %}">Home</a>
+            <a href="{% url 'blog_generator:all_blogs' %}">Saved blog</a>
+            <a href="{% url 'blog_generator:index' %}#howTo">How to use</a>
+            <a href="{% url 'blog_generator:index' %}#Vibe">About Us</a>
+            <a href="{% url 'blog_generator:index' %}#connect">Contact Us</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'blog_generator:user_logout' %}" style="color: rgb(172, 10, 10);">Logout</a>
+            {% else %}
+            <a href="{% url 'blog_generator:user_login' %}">Login</a>
+            {% endif %}
+            <i class="fa-solid fa-square-caret-up  hover:cursor-pointer"></i>
+        </div>
+     </nav>
+
+     
+<main class="flex-grow">  <!-- Add this wrapper -->
+  {% block content %}
+
+  {% endblock %}
+</main>
+
+<div class="string string2">
+    <svg width="100vw" height="200">
+    <path d="M 50 100 Q 500 100 1490 100" stroke="#000000" fill="transparent"/>
+    </svg>
+</div>
+<footer class="w-full h-[90vh] text-gray-800">
+    <div class="container mx-auto px-4 py-8 flex flex-wrap">
+      <!-- First Div -->
+      <div class="w-1/2 mb-4 px-2">
+        <h3 class="text-lg font-semibold mb-2 text-black"><i class="fa-solid fa-cube"></i> OWL AI newsletter</h3>
+        <div class="fcard">
+            <span class="card__title">Newsletter</span>
+            <p class="card__content">
+            Get existential crisis delivered straight to your inbox every week.
+            </p>
+            <form class="card__form">
+            <input required="" type="email" placeholder="Your life" />
+            <button class="card__button">Click me</button>
+            </form>
+        </div>
+      </div>
+      
+      <!-- Second Div -->
+      <div class="w-1/2 mb-4 px-2">
+        <h3 class="text-lg font-semibold mb-2">Quick Links</h3>
+        <ul class="text-sm">
+          <li><a href="{% url 'blog_generator:index' %}" class="hover:text-white">Home</a></li>
+          <li><a href="{% url 'blog_generator:index' %}#howTo" class="hover:text-white">Guide</a></li>
+          <li><a href="{% url 'blog_generator:all_blogs' %}" class="hover:text-white">Blog History</a></li>
+          <li><a href="{% url 'blog_generator:index' %}#Vibe" class="hover:text-white">About</a></li>
+          <li><a href="{% url 'blog_generator:index' %}#connect" class="hover:text-white">Contact</a></li>
+        </ul>
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Contact Us</h3>
+          <p class="text-sm">
+            Email: AiOwl@gmail.com <br />
+            Phone: +123 456 7890 <br />
+            Address: 123 Tech Street, City, Country
+          </p>
+        </div>
+      </div>
+  </footer>
+  
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://kit.fontawesome.com/4e7ccfdc4a.js" crossorigin="anonymous"></script>
+<script src="{% static 'js/script.js' %}" defer></script>
+</body>
+</html>

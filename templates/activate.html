@@ -1,0 +1,15 @@
+{% autoescape off %}
+
+Hi {{user.username}},
+
+Thank you for signing up for OwlAi! To complete your registration and secure your account, <br>
+please verify your email address by clicking the link below:
+
+http://{{domain}}{% url 'activate' uidb64=uid token=token %}
+
+If you did not sign up for [Your Site Name], please ignore this email.
+
+Best regards,
+OwlAi Team
+
+{% endautoescape %}

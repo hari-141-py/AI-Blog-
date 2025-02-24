@@ -1,0 +1,195 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="logContainer relative">
+    <div>
+        <img src="{% static 'images/1.png' %}" id="floater1">
+        <img src="{% static 'images/3.png' %}" id="floater3">
+        <img src="{% static 'images/2.png' %}" id="floater22">
+    </div>
+    
+     <!-- Django Messages Section -->
+     {% if messages %}
+     <div id="message-container" class="z-50 space-y-2 p-4 absolute top-[10vw] left-[50vw] transform -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-500">
+         {% for message in messages %}
+             {% if message.tags == "success" %}
+             <div class="flex items-center p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
+                 <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                   <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                 </svg>
+                 <div>
+                   <span class="font-medium">{{ message }}</span>
+                 </div>
+             </div>
+     
+             {% elif message.tags == "error" %}
+             <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+                 <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                   <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                 </svg>
+                 <div>
+                   <span class="font-medium">{{ message }}</span>
+                 </div>
+             </div>
+             {% endif %}
+         {% endfor %}
+     </div>
+     {% endif %}
+     
+
+    <!-- MAIN CONTENT -->
+   <div class="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+        <div class="mx-auto w-full max-w-xs relative flex flex-col items-center justify-center text-center overflow-visible">
+            <h3 class="text-3xl font-bold">Get Started Now</h3>
+            <div class="w-full relative flex flex-col items-center justify-center">
+                <div
+                class="absolute inset-x-auto top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-full blur-sm"
+                ></div>
+                <div
+                class="absolute inset-x-auto top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-full"
+                ></div>
+                <div
+                class="absolute inset-x-auto top-0 bg-gradient-to-r from-transparent via-purple-400 to-transparent h-[5px] w-1/2 blur-sm"
+                ></div>
+                <div
+                class="absolute inset-x-auto top-0 bg-gradient-to-r from-transparent via-purple-400 to-transparent h-px w-1/2"
+                ></div>
+                <div
+                class="absolute inset-0 w-full h-full bg-background [mask-image:radial-gradient(50%_200px_at_top,transparent_20%,white)]"
+                ></div>
+        </div>
+        <p class="mt-3 text-sm">
+            Be part of millions people around the world using modern User Interfaces.
+        </p>
+        
+        <span
+            class="absolute -z-[1] backdrop-blur-sm inset-0 w-full h-full flex before:content-[''] before:h-3/4 before:w-full before:bg-gradient-to-r before:from-black before:to-purple-600 before:blur-[90px] after:content-[''] after:h-1/2 after:w-full after:bg-gradient-to-br after:from-cyan-400 after:to-sky-300 after:blur-[90px]"
+        ></span>
+        </div>
+        
+        <div
+        class="max-w-[30vw] mx-auto relative overflow-hidden z-10  p-8 rounded-lg shadow-md">
+        <div class="flex flex-row justify-between items-center">
+            <h2 class="text-2xl font-bold text-white">Create New Account</h2>
+            <a href="{% url 'blog_generator:user_login' %}" class="text-2xl">
+                <i class="fa-solid fa-square-caret-left" id="backi"></i>
+            </a>
+        </div>    
+        <form action="#" class="form" method="POST">
+            {% csrf_token %}
+            <div class="flex gap-5">
+                <div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="fname">First Name</label>
+                <input
+                    name = "fname"
+                    class="mt-1 p-2 w-full bg-black border border-gray-600 rounded-md text-white"
+                    id="fname"
+                    type="text"
+                    autocomplete="off"
+                    value="{{data.fname}}"
+                />
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="lname">Last Name</label>
+                <input
+                    name = "lname"
+                    class="mt-1 p-2 w-full bg-black border border-gray-600 rounded-md text-white"
+                    id="lname"
+                    type="text"
+                    autocomplete="off"
+                    value="{{data.lname}}"
+                />
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="uname">User Name</label>
+                <input
+                    name = "uname"
+                    class="mt-1 p-2 w-full bg-black border border-gray-600 rounded-md text-white"
+                    id="uname"
+                    type="text"
+                    autocomplete="off"
+                    value="{{data.uname}}"
+                />
+            </div>
+        </div>
+        <div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="email">Email Address</label>
+                <input
+                    name="email"
+                    class="mt-1 p-2 w-full bg-black border border-gray-600 rounded-md text-white"
+                    id="email"
+                    type="email"
+                    autocomplete="off"
+                    value="{{data.email}}"
+                />
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="pswrd">Password</label>
+                <input
+                    name = "pswrd"
+                    class="mt-1 p-2 w-full bg-black border border-gray-600 rounded-md text-white"
+                    id="pswrd"
+                    type="password"
+                />
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-300" for="rpswrd">Repeat Password</label>
+                <input
+                    name = "rpswrd"
+                    class="mt-1 p-2 w-full bg-black border border-gray-600 rounded-md text-white"
+                    id="rpswrd"
+                    type="password"
+                />
+            </div>
+        </div>
+        </div>
+            <div class="flex justify-end gap-5 mb-[8vw]">
+                <button
+                    class="button32"
+                    type="submit"
+                >
+                    <span class="button_top">Sign Up</span>
+                </button>
+            </div>
+        </form>
+        </div>
+    </div>  
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const messageContainer = document.getElementById("message-container");
+
+    if (messageContainer) {
+        // Ensure message starts hidden
+        messageContainer.style.opacity = "0";
+        messageContainer.style.display = "block"; // Make sure it's visible before fading
+
+        // Fade-in after 100ms
+        setTimeout(() => {
+            messageContainer.style.opacity = "1";
+            messageContainer.style.transition = "opacity 0.8s ease-out";
+        }, 100);
+
+        // Keep visible for 5 seconds, then fade out
+        setTimeout(() => {
+            messageContainer.style.opacity = "0";
+        }, 5000);
+
+        // Remove the message after fade-out
+        setTimeout(() => {
+            messageContainer.style.display = "none";
+        }, 5800); // Wait for full fade-out before hiding
+    }
+});
+
+</script>
+    
+
+{% endblock %}

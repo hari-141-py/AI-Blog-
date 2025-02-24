@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <div id="cursor"></div>
+
+
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#ff0000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under construction</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: #111;
+            color: whitesmoke;
+            overflow: hidden;
+        }
+        ::selection{
+            background-color: #c7c5c5;
+            color: #111;
+        }
+        .hjk{
+            position: absolute;
+            font-size: 1.5vw;
+            font-family: "DotGothic16", serif;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .page_not_found{
+            margin-left: 24vw;
+            margin-top: 15vw;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="hjk">
+            <p>Oops! The page you’re looking for doesn’t exist.</p>
+            <a href="{% url 'blog_generator:index' %}">Go back to Home</a>
+        </div>
+        <div class="page_not_found">
+            <img src="{% static 'images/404.png' %}" alt="not found" width="800">
+        </div>
+    </div>
+</body>
+</html>
