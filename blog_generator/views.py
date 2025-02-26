@@ -274,13 +274,15 @@ def generate_blog_from_transcription(transcription):
     """Generate a blog post from a transcription using Gemini API."""
     
     api_key = os.getenv("GEMINI_API_KEY")  
+    print(os.getenv("GEMINI_API_KEY"))
+
 
     if not api_key:
         return "Error: Gemini API Key is missing. Check .env file."
 
     # Configure the Gemini API
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("gemini-2.0-pro-exp-02-05")
 
     # Clean indentation for proper formatting
     prompt = dedent(f"""\
@@ -291,20 +293,6 @@ def generate_blog_from_transcription(transcription):
     - Use **bold subheadings** for different sections.
     - Ensure each paragraph is clearly separated with a blank line.
     - Keep the article **concise, engaging, and under 500 words**.
-
-    **Example Structure:**
-    
-    # Main Heading
-    
-    Introduction paragraph here.
-
-    **Subheading 1**
-    
-    Paragraph about this topic.
-
-    **Subheading 2**
-    
-    Another paragraph.
 
     Here is the transcript:
     {transcription}
